@@ -1,4 +1,4 @@
-This repo demonstrates an important StarkNet concept with regard to transaction hashes and how they are processed by StarkNet Alpha v4. This is aimed at explaining StarkNet concepts to developers who are used to working with EVM.
+This repo demonstrates an important StarkNet concept with regard to transaction hashes and how they are processed by StarkNet Alpha v4. This may be helpful to developers who are used to working with the EVM.
 
 The `CantIncrementTwiceCounter.cairo` program exposes a write method `incrementCounter` that takes no arguments and increases the state counter by 1 upon each invocation
 
