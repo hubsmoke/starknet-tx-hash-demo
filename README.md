@@ -17,7 +17,7 @@ There are currently two major implementations:
 
 The minimum required implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add parameters and invoke with different parameters each time, however that is not as useful as the Account abstraction.
 
-Deploying your own Account and updating the state of this counter to > 1 is currently left as an exercise to the reader.
+Deploying your own Account and updating the state of this counter to > 1 is currently left as an exercise to the reader. The following repo provides a working example for a similar counter contract using the ArgentX StarkNet wallet as the Account abstraction component: https://github.com/fracek/starknet-react-example
 
 # Further reading
 - https://hackmd.io/@RoboTeddy/BJZFu56wF
