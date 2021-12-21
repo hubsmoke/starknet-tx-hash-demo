@@ -19,6 +19,13 @@ The minimum required implementation to achieve a counter that increments above 1
 
 Deploying your own Account and updating the state of this counter to > 1 is left as an exercise to the reader.
 
+# Further reading
+- https://hackmd.io/@RoboTeddy/BJZFu56wF
+- https://www.cairo-lang.org/docs/hello_starknet/user_auth.html#what-if-we-have-an-invalid-signature
+- https://perama-v.github.io/cairo/account-abstraction/
+- https://github.com/gakonst/awesome-starknet
+
+
 # set up environment
 https://www.cairo-lang.org/docs/quickstart.html
 
