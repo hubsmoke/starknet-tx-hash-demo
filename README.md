@@ -4,11 +4,11 @@ The CantIncrementTwiceCounter.cairo program exposes a write method "incrementCou
 
 StarkNet Alpha v4 calculates transaction hashes based on contract address, function call, and parameters. Since there are no parameters, the transaction hash will always be the same when incrementCounter is called for this deployed contract.
 
-Counter starts at 0. No matter how many times incrementCounter is invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation.
+Counter starts at 0. No matter how many times incrementCounter is directly invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation.
 
 # How do I make this work in practice, with a counter that increments as expected?
 
-The current best practice to update states is via the Account abstraction, which will keep track of a public key and nonce internally in order to sign/verify transactions and update transaction hashes as if you were using the EVM.
+The current best practice to update states is via the Account abstraction, which will keep track of a public key and nonce internally in order to sign/verify transactions and update transaction hashes as if you were using the EVM. The idea here is that the Account contract is effectively owned by the private key holder of its assigned public key, therefore granting the private key holder custody of the Account. All contract calls are effectively proxied through an "execute" method which takes a nonce as a parameter, therefore modifying the transaction hash and allowing states to be updated. 
 
 There are currently two major implementations:
 
@@ -17,10 +17,12 @@ There are currently two major implementations:
 
 The minimum required implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add parameters and invoke with different parameters each time, however that is not as useful as the Account abstraction.
 
+Deploying your own Account and updating the state of this counter to > 1 is left as an exercise to the reader.
+
 # set up environment
 https://www.cairo-lang.org/docs/quickstart.html
 
-# deploy contract (optional, can use deployed contract below)
+# deploy contract
 
 `starknet deploy --contract CantIncrementTwiceCounter_compiled.json --gateway_url https://alpha4.starknet.io/gateway/`
 
@@ -33,8 +35,6 @@ Transaction hash: 0x81d6b588502d0f51305bc8ec8bc3a58504f3700d32532181845248db880c
 # get counter
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
-# you will see 1, if you want to see it start at 0 then
-# redeploy contract above and fill in the addresses for each subsequent call/invoke command
 0
 ```
 
@@ -46,7 +46,7 @@ Contract address: 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028c
 Transaction hash: 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d
 ```
 
-# wait for transaction to finish (if you did not deploy a new contract, it will already be finished)
+# wait for transaction to finish
 `starknet get_transaction_receipt --hash 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d --gateway_url https://alpha4.starknet.io/gateway/ --network alpha-goerli`
 ```
 {
