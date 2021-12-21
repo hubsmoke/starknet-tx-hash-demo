@@ -6,7 +6,7 @@ The `CantIncrementTwiceCounter.cairo` program exposes a write function `incremen
 
 The counter starts at 0. No matter how many times `incrementCounter` is directly invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation.
 
-So, why is the counter not updated to 2 after the second invocation? Each time the `incrementCounter` function is directly invoked, the same exact transaction hash will be submitted to the network, resulting in the invocation being ignored by StarkNet Alpha v4, and thus no further state updates will be made.
+So, why is the counter not updated to 2 after the second invocation? Each time the `incrementCounter` function is directly invoked, the same exact transaction hash will be submitted to the network, resulting in the invocation being ignored by StarkNet Alpha v4, and thus no further computation or state updates will be made.
 
 # How do I make this work in practice, with a counter that increments as expected?
 
