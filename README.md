@@ -26,11 +26,15 @@ Deploying your own Account and updating the state of this counter to > 1 is left
 - https://github.com/gakonst/awesome-starknet
 
 
-# set up environment
+# Running Demo
+
+Set up Environment
+------------------
+
 https://www.cairo-lang.org/docs/quickstart.html
 
-# deploy contract
-
+Deploy contract
+------------------
 `starknet deploy --contract CantIncrementTwiceCounter_compiled.json --gateway_url https://alpha4.starknet.io/gateway/`
 
 ```
@@ -39,13 +43,15 @@ Contract address: 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028c
 Transaction hash: 0x81d6b588502d0f51305bc8ec8bc3a58504f3700d32532181845248db880c04
 ```
 
-# get counter
+Get counter
+------------------
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
 0
 ```
 
-# increment counter (1st time)
+Increment counter (1st time)
+------------------
 `starknet invoke --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function incrementCounter --network alpha-goerli`
 ```
 Invoke transaction was sent.
@@ -53,7 +59,8 @@ Contract address: 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028c
 Transaction hash: 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d
 ```
 
-# wait for transaction to finish
+Wait for transaction to finish
+------------------
 `starknet get_transaction_receipt --hash 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d --gateway_url https://alpha4.starknet.io/gateway/ --network alpha-goerli`
 ```
 {
@@ -78,13 +85,15 @@ Transaction hash: 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d
 }
 ```
 
-# get counter (2nd time)
+Get counter (2nd time)
+------------------
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
 1
 ```
 
-# increment counter (2nd time)
+Increment counter (2nd time)
+------------------
 `starknet invoke --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function incrementCounter --network alpha-goerli`
 ```
 # NOTE: same exact transaction hash!
@@ -93,7 +102,8 @@ Contract address: 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028c
 Transaction hash: 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d
 ```
 
-# get counter (3nd time)
+Get counter (3nd time)
+------------------
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
 1
