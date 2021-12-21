@@ -10,7 +10,7 @@ So, why is the counter not updated to 2 after the second invocation? Each time t
 
 # How do I make this work in practice, with a counter that increments as expected?
 
-The current best practice to update states is via the Account abstraction. This is a contract, referred to as an Account, which stores a public key and nonce internally. The public key is used in order to verify signed transactions. The nonce is used to prevent replay attacks and update transaction hashes.
+The current best practice to update states is via the Account abstraction. This is a contract, referred to as an Account, which stores a public key and nonce internally. The public key is used to verify signed transactions. The nonce is used to prevent replay attacks and update transaction hashes, it is incremented after every authenticated external contract call.
 
 The idea here is that calls to Account contract can be authenticated by signature verification based on the Account's assigned public key, therefore granting the private key holder custody of the Account. All external contract calls are effectively proxied through the Account contract's "execute" function *which takes a nonce as a parameter, therefore modifying the transaction hash*. This new transaction hash enables StarkNet Alpha v4 to continue processing the transaction, allowing computation to continue and states to be updated. The end result is similar to the experience of making authenticated contract calls using the EVM.
 
