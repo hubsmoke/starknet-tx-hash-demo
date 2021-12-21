@@ -2,7 +2,7 @@ This demonstrates a key StarkNet concept with regard to transaction hashes and h
 
 The `CantIncrementTwiceCounter.cairo` program exposes a write method `incrementCounter` that takes no arguments and increases the state counter by 1 upon each invocation
 
-StarkNet Alpha v4 calculates transaction hashes based on contract address, function call, and parameters. Since there are no parameters, the transaction hash will always be the same when incrementCounter is directly invoked for this deployed contract.
+StarkNet Alpha v4 calculates transaction hashes based on contract address, function call, and parameters. Since there are no parameters, the transaction hash will always be the same when `incrementCounter` is directly invoked for this deployed contract.
 
 The counter starts at 0. No matter how many times `incrementCounter` is directly invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation. Each time the `incrementCounter` method is directly invoked, the same exact transaction hash will be submitted to the network, resulting in the invocation being ignored by StarkNet Alpha v4, and thus no further state updates will be made.
 
@@ -108,5 +108,7 @@ Get counter (3rd time)
 ------------------
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
+# still returns 1, no state update made
+# second write invocation was ignored
 1
 ```
