@@ -1,14 +1,16 @@
 This demonstrates a key StarkNet concept with regard to transaction hashes and how they are processed by StarkNet Alpha v4
 
-The CantIncrementTwiceCounter.cairo program exposes a write method "incrementCounter" that takes no arguments and increases the state counter by 1 upon each invocation
+The `CantIncrementTwiceCounter.cairo` program exposes a write method `incrementCounter` that takes no arguments and increases the state counter by 1 upon each invocation
 
 StarkNet Alpha v4 calculates transaction hashes based on contract address, function call, and parameters. Since there are no parameters, the transaction hash will always be the same when incrementCounter is directly invoked for this deployed contract.
 
-Counter starts at 0. No matter how many times incrementCounter is directly invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation. Each time the incrementCounter method is directly invoked, the same exact transaction hash will be submitted to the network, resulting in the invocation being ignored by StarkNet Alpha v4, and thus no further state updates will be made.
+The counter starts at 0. No matter how many times `incrementCounter` is directly invoked, counter will always be a maximum of 1. However, the cairo code seems to imply the counter should increase upon each invocation. Each time the `incrementCounter` method is directly invoked, the same exact transaction hash will be submitted to the network, resulting in the invocation being ignored by StarkNet Alpha v4, and thus no further state updates will be made.
 
 # How do I make this work in practice, with a counter that increments as expected?
 
-The current best practice to update states is via the Account abstraction, which will keep track of a public key and nonce internally in order to sign/verify transactions and update transaction hashes as if you were using the EVM. The idea here is that the Account contract is effectively owned by the private key holder of its assigned public key, therefore granting the private key holder custody of the Account. All contract calls are effectively proxied through an "execute" method which takes a nonce as a parameter, therefore modifying the transaction hash and allowing states to be updated. 
+The current best practice to update states is via the Account abstraction. This is a contract, referred to as an Account, which stores a public key and nonce internally. The public key is used in order to verify signed transactions and the nonce is used to prevent replay attacks and update transaction hashes.
+
+The idea here is that the Account contract is effectively owned by the private key holder of its assigned public key, therefore granting the private key holder custody of the Account. All contract calls are effectively proxied through an "execute" method which takes a nonce as a parameter, therefore modifying the transaction hash and allowing states to be updated. The end result is similar to the experience of making contract calls using the EVM.
 
 There are currently two major implementations:
 
