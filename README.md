@@ -17,7 +17,7 @@ There are currently two major implementations:
 
 The minimum required implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add parameters and invoke with different parameters each time, however that is not as useful as the Account abstraction.
 
-Deploying your own Account and updating the state of this counter to > 1 is left as an exercise to the reader.
+Deploying your own Account and updating the state of this counter to > 1 is currently left as an exercise to the reader.
 
 # Further reading
 - https://hackmd.io/@RoboTeddy/BJZFu56wF
@@ -102,7 +102,7 @@ Contract address: 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028c
 Transaction hash: 0x4db992c1109bf426675eb859da9f98e782934b95799bc4e10a5626720a3d06d
 ```
 
-Get counter (3nd time)
+Get counter (3rd time)
 ------------------
 `starknet call --address 0x03f7fc65c3151b30addb82bc81180098e65e4a99a566def4d8ed894d028ce402 --abi CantIncrementTwiceCounter_abi.json --function counter --network alpha-goerli`
 ```
