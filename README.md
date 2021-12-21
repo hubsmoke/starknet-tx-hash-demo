@@ -15,6 +15,8 @@ There are currently two major implementations:
 - https://github.com/argentlabs/argent-contracts-starknet/blob/main/contracts/ArgentAccount.cairo
 - https://github.com/OpenZeppelin/cairo-contracts/blob/main/contracts/Account.cairo
 
+The minimum required implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add parameters and invoke with different parameters each time, however that is not as useful as the Account abstraction.
+
 # set up environment
 https://www.cairo-lang.org/docs/quickstart.html
 
