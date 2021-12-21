@@ -19,7 +19,7 @@ There are currently two major implementations:
 - https://github.com/argentlabs/argent-contracts-starknet/blob/main/contracts/ArgentAccount.cairo
 - https://github.com/OpenZeppelin/cairo-contracts/blob/main/contracts/Account.cairo
 
-The minimum required implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add one or more parameters to the `incrementCounter` function and invoke it with different parameters each time, however that is neither as practical nor as useful as the Account abstraction.
+The minimum/naive implementation to achieve a counter that increments above 1 without using the full authenticated Account abstraction would be to add one or more parameters to the `incrementCounter` function and invoke it with different parameters each time, however that is neither as practical nor as useful as the Account abstraction.
 
 Deploying your own Account and updating the state of the counter to > 1 is currently left as an exercise to the reader. The following repo provides a working example for a similar counter contract using the ArgentX StarkNet wallet as the interface to the Account abstraction: https://github.com/fracek/starknet-react-example
 
